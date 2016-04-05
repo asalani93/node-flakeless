@@ -4,8 +4,7 @@
   "description": "Generates unique IDs from timestamps",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "preinstall": "node-gyp rebuild"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
