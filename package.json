@@ -7,7 +7,11 @@
     "test": "./node_modules/.bin/mocha",
     "preinstall": "node-gyp rebuild"
   },
-  "author": "asalani93@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asalani93/node-flakeless"
+  },
+  "author": "Anthony Salani (https://github.com/asalani93)",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
