@@ -1,6 +1,6 @@
 {
   "name": "flakeless",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates unique IDs from timestamps",
   "main": "index.js",
   "scripts": {
