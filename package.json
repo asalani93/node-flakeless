@@ -1,5 +1,5 @@
 {
-  "name": "node-flakeless",
+  "name": "flakeless",
   "version": "1.0.0",
   "description": "Generates unique IDs from timestamps",
   "main": "index.js",
