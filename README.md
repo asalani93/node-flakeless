@@ -5,7 +5,7 @@ Flakeless is a Javascript library and Node.js native addon for computing small, 
 
 ## How it Works
 
-The strategy for generating IDs is identical to how Twitter generates IDs with Snowflake.  Flakeless is an implementation of their algorithm for Node.js.  The primary benefit of Flakeless over the other Javascript implementations is that Flakeless was written as a native addon, so it has the ease of use of any other Javascript library but has the performance of C++.
+The strategy for generating IDs is identical to how Twitter generates IDs with [Snowflake](https://blog.twitter.com/2010/announcing-snowflake).  Flakeless is an implementation of their algorithm for Node.js.  The primary benefit of Flakeless over the other Javascript implementations is that Flakeless was written as a native addon, so it has the ease of use of any other Javascript library but has the performance of C++.
 
 The way Snowflake (and by proxy, Flakeless) works is by combining the following values:
 
@@ -54,10 +54,24 @@ const flakeless = new Flakeless({
 let id = flakeless.next();
 ```
 
-`Flakeless#next` takes no arguments, and returns a string containing the next unique ID.
+`Flakeless#next` takes no arguments, and returns a string containing the next unique ID. Strings were used because Flakeless generates 63-bit IDs, and Javascript only supports up to 52-bit integers before precision declines.
 
 ## Performance
 
-is fast
+Preliminary benchmarks yield the following results:
 
+| Flakeless        | Flakeless JS     | `node-snowflake` | `Date.now()`     |
+|------------------|------------------|------------------|------------------|
+| 0.000099 ms/call | 0.003470 ms/call | 0.003870 ms/call | 0.000069 ms/call |
+|   10101 calls/ms |     288 calls/ms |     258 calls/ms |   14492 calls/ms |
 
+_\* All tests done by measuring the average time per call over 10,000,000 calls while outputting to base64, except for `node-snowflake` which only outputs decimal values and `Date.now()` which was used as a reference._
+
+## Roadmap
+
+* Soon Flakeless will support providing custom times to `Flakeless#next` instead of using the current system clock in milliseconds.
+* Eventually, Flakeless will support custom output formats that deviate from the provided 41-10-12 format, and will allow for the utilization of MAC addresses.
+
+## Contributing
+
+If you think you can add useful features to Flakeless or can make it faster, please contribute! Most of the work here was done in a handful of days while learning how to use V8 and NAN, so there's definitely a lot of room for improvement.
