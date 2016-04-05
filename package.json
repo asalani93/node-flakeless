@@ -1,0 +1,20 @@
+{
+  "name": "node-flakeless",
+  "version": "1.0.0",
+  "description": "Generates unique IDs from timestamps",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "preinstall": "node-gyp rebuild"
+  },
+  "author": "asalani93@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "node-gyp": "^3.3.1"
+  },
+  "dependencies": {
+    "nan": "^2.2.1"
+  }
+}
