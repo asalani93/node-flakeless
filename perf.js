@@ -1,13 +1,13 @@
 'use strict';
 
-const Flakeless = require('./index');
+const Flakeless = require('./index').Flakeless;
 const FlakelessJs = require('./js-impl');
-const flakelessJs = new FlakelessJs({ outputFmt: 'base64' });
-const flakeless10 = new Flakeless({ outputType: 'base10' });
-const flakeless16 = new Flakeless({ outputType: 'base16' });
-const flakeless64 = new Flakeless({ outputType: 'base64' });
+const flakelessJs = new FlakelessJs({outputFmt: 'base64'});
+const flakeless10 = new Flakeless({outputType: 'base10'});
+const flakeless16 = new Flakeless({outputType: 'base16'});
+const flakeless64 = new Flakeless({outputType: 'base64'});
 
-const iterations = 100000;
+const iterations = 10000000;
 
 console.log('Starting reference test...');
 

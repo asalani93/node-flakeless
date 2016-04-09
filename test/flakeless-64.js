@@ -1,9 +1,9 @@
 'use strict';
 
 const assert = require('chai').assert;
-const Flakeless = require('..');
+const Flakeless = require('..').Flakeless;
 
-describe('Flakeless Base 16', function() {
+describe('Flakeless base64 output', function() {
   it('is an object', function() {
     const flakeless = new Flakeless({
       outputType: 'base64'
@@ -38,7 +38,7 @@ describe('Flakeless Base 16', function() {
     const flakeless = new Flakeless({
       epochStart: Date.now(),
       outputType: 'base64'
-    })
+    });
 
     // Generate a bunch of IDs.
     const ids = [];
@@ -49,7 +49,7 @@ describe('Flakeless Base 16', function() {
     // Sort the IDs.  If the output of next is increasing, this should be exact
     //   same as the not-yet-sorted array.
     const sortedIds = ids.sort();
-    assert.deepEqual(ids, sortedIds); 
+    assert.deepEqual(ids, sortedIds);
   });
 
   it('is monotonic', function() {
@@ -67,11 +67,7 @@ describe('Flakeless Base 16', function() {
     // Sort the IDs and remove duplicates.  If the output is monotonic, the
     //   length of the two array should be the same.
     const sortedIds = ids.sort().reduce(function(prev, curr) {
-      if (curr === prev[0]) {
-        return prev;
-      } else {
-        return [curr].concat(prev);
-      }
+      return (curr === prev[0]) ? prev : [curr].concat(prev);
     }, []);
     assert.lengthOf(sortedIds, 1000);
   });
@@ -84,7 +80,7 @@ describe('Flakeless Base 16', function() {
     });
 
     const id = flakeless.next();
-    const timePart = id[4] + id[5]
+    const timePart = id[4] + id[5];
 
     assert.notEqual(timePart, '--');
   });
