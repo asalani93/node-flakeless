@@ -34,7 +34,7 @@ npm install flakeless
 ### Initialization:
 
 ```js
-const Flakeless = require('flakeless');
+const Flakeless = require('flakeless').Flakeless;
 const flakeless = new Flakeless({
   epochStart: Date.now(),
   outputType: 'base64',
@@ -55,6 +55,24 @@ let id = flakeless.next();
 ```
 
 `Flakeless#next` takes no arguments, and returns a string containing the next unique ID. Strings were used because Flakeless generates 63-bit IDs, and Javascript only supports up to 52-bit integers before precision declines.
+
+### Using the built-in Client and Server:
+
+```js
+const Flakeless = require('flakeless').Flakeless;
+const Client = require('flakeless').Client;
+const Server = require('flakeless').Server;
+
+const flakeless = new Flakeless;
+const server = new Server(6000, function() {
+  server.addGenerator('/a', flakeless);
+});
+
+const client = new Client('http://localhost:6000/a')
+client.next().then(function(ids) {
+  // use the IDs here
+});
+```
 
 ## Performance
 
